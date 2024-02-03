@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app)
+socketio = SocketIO(app,  cors_allowed_origins="*")
 led_status_global = False
 
 @app.route('/')
@@ -30,5 +30,4 @@ def handle_connect():
     socketio.emit('led_status', False)  
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True , allow_unsafe_werkzeug=True, resources={r"/*": {"origins": "https://geargrafana.bicbioeng.org/"}})
- 
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True, allow_unsafe_werkzeug=True)
