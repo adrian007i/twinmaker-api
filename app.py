@@ -5,8 +5,8 @@ from flask_cors import CORS
 # from iotsitewise import update_sitewise
 
 app = Flask(__name__)
-CORS(app)
-socketio = SocketIO(app,cors_allowed_origins="*")
+CORS(app,resources={r"/*":{"origins":"*"}})
+socketio = SocketIO(app, cors_allowed_origins="*")
 led_status_global = False
 
 @app.route('/')
