@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app,  cors_allowed_origins="*")
+socketio = SocketIO(app,cors_allowed_origins="*")
 led_status_global = False
 
 @app.route('/')
