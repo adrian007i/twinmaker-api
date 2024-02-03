@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED STATUS</title>
+</head>
+<body>
+    <h1>LED STATUS</h1>
+    <div id="messages"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script> 
+        var socket = io.connect(window.location.protocol+'//' + document.domain + ':' + location.port);
+
+        socket.on('led_status', function(data) {
+          console.log(data)
+            var messagesDiv = document.getElementById('messages'); 
+            messagesDiv.innerHTML = 'Received Webhook Data: ' + data; 
+        });
+    </script>
+</body>
+</html>
