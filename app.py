@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
-from iotsitewise import update_sitewise
+# from iotsitewise import update_sitewise
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -14,7 +14,7 @@ def index():
 def change_led_web_hook():
     
     led_status = bool(request.get_json()["led_on"])
-    update_sitewise(led_status)
+    # update_sitewise(led_status)
     
     global led_status_global
     led_status_global = led_status
