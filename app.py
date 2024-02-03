@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
+from flask_cors import CORS
+
 # from iotsitewise import update_sitewise
 
 app = Flask(__name__)
+CORS(app)
 socketio = SocketIO(app)
 led_status_global = False
 
@@ -27,5 +30,5 @@ def handle_connect():
     socketio.emit('led_status', False)  
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True , allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True , allow_unsafe_werkzeug=True, resources={r"/*": {"origins": "https://geargrafana.bicbioeng.org/"}})
  
