@@ -17,7 +17,12 @@ def index():
 def change_led_web_hook():
     
     led_status = bool(request.get_json()["led_on"])
-    # update_sitewise(led_status)
+    
+    try: 
+        update_sitewise(led_status)
+
+    except Exception as e:
+        return str(e),400
     
     global led_status_global
     led_status_global = led_status
