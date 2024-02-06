@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from flask_cors import CORS
-
-# from iotsitewise import update_sitewise
+from iotsitewise import update_sitewise
 
 app = Flask(__name__)
 CORS(app,resources={r"/*":{"origins":"*"}})
@@ -19,8 +18,7 @@ def change_led_web_hook():
     led_status = bool(request.get_json()["led_on"])
     
     try: 
-        update_sitewise(led_status)
-
+        update_sitewise(led_status) 
     except Exception as e:
         return str(e),400
     
