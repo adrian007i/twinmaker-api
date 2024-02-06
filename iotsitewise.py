@@ -2,6 +2,7 @@ import boto3
 import datetime
 import time
 import os
+import logging
 
 # AWS SiteWise Alias
 alias = '/biofilm/led/status'
@@ -39,11 +40,6 @@ def update_sitewise(status):
         ]
     }
 
+    client.batch_put_asset_property_value(entries=payload['entries'])
 
-    # Send the data to AWS SiteWise
-    try:
-        response = client.batch_put_asset_property_value(entries=payload['entries'])
-        print(resposne)
-    except Exception as e:
-        print("Error sending data: {}".format(e))
 

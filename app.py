@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from flask_cors import CORS
+
+import logging
+logging.basicConfig(level=logging.INFO)
+
 from iotsitewise import update_sitewise
 
 app = Flask(__name__)
@@ -17,9 +21,10 @@ def change_led_web_hook():
     
     led_status = bool(request.get_json()["led_on"])
     
-    try: 
+    try:  
         update_sitewise(led_status) 
     except Exception as e:
+        app.logger.info(str(e))
         return str(e),400
     
     global led_status_global
