@@ -42,7 +42,8 @@ def update_sitewise(status):
 
     # Send the data to AWS SiteWise
     try:
-        client.batch_put_asset_property_value(entries=payload['entries'])
+        response = client.batch_put_asset_property_value(entries=payload['entries'])
+        print(resposne)
     except Exception as e:
         print("Error sending data: {}".format(e))
 
